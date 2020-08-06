@@ -25,43 +25,45 @@ app.use(express.static("public"));
 app.get("/api/notes", function(req, res) {
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
-    console.log(data);
+    //console logs db.json
+    consoleLOG(data);
     return res.json();
   });
 });
 
-// Displays a single note, or returns false
-// app.get("/api/notes/:note", function(req, res) {
-//   let chosen = req.params.note;
-  
-//   console.log(chosen);
-  
-//   for (var i = 0; i < notes.length; i++) {
-//     if (chosen === notes[i].routeName) {
-//       return res.json(notes[i]);
-//     }
-//   }
-  
-//   return res.json(false);
-// });
+
 
 // Create New Note - takes in JSON input
 app.post("/api/notes", function(req, res) {
   let newNote = req.body;
-  fs.appendFile(outputPath, JSON.stringify(newNote)+",\n", (err, data) => {
+  
+  fs.appendFile(outputPath, "\n"+JSON.stringify(newNote), (err, data) => {
     if (err) throw err;
+    // //returns new note to client
+    // consoleLOG(newNote);
+    return res.json(newNote); 
   });
-  console.log(newNote);
-  // //returns new note to client
-  res.json(newNote); 
 });
+
+// // Displays a single note, or returns false
+// app.delete("/api/notes/:id", function(req, res) {
+//   let chosen = req.params.id;
+  
+//   console.log(chosen);
+  
+//   for (var i = 0; i < notes.length; i++) {
+//     if (chosen === notes[i].id) {
+//       return res.json(notes[i].id);
+//     }
+//   }
+//   return res.json(false);
+// });
 
 // htmlRoutes
 // =============================================================
 // Basic route that sends the user first to the AJAX Page
 app.get("/notes", function(req, res) {
   res.sendFile(path.join(__dirname, "./public/notes.html"));
-  
 });
 
 app.get("*", function(req, res) {
@@ -73,3 +75,8 @@ app.get("*", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
+function consoleLOG(data) {
+  console.log(data);
+}
+
