@@ -103,6 +103,7 @@ const handleRenderSaveBtn = function () {
 
 // Render's the list of note titles
 const renderNoteList = (notes) => {
+  //add hack to fix parsing response
   $noteList.empty();
 
   const noteListItems = [];
