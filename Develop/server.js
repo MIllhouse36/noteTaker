@@ -26,11 +26,18 @@ app.post("/api/notes", function (req, res) {
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
     const dbJson = JSON.parse(data);
-    let newID = 0;
-    if (dbJson !== [] || dbJson !== null || dbJson !== [{}]) {
+    console.log(dbJson);
+    console.log(dbJson === []);
+    let newID;
+    if (dbJson.length > 0) {
       newID = dbJson[dbJson.length - 1].id + 1;
+      console.log(newID)
+    }else{
+      newID = 0;
     }
-    const newNote = { id: newID, ...req.body };
+    let newNote = req.body;
+    newNote.id = newID;
+    // const newNote = { id: newID, ...req.body };
     dbJson.push(newNote);
     fs.writeFile(outputPath, JSON.stringify(dbJson, null, 2, +","), (err) => {
       if (err) throw err;
@@ -40,22 +47,23 @@ app.post("/api/notes", function (req, res) {
 });
 
 app.delete("/api/notes/:id", function(req, res) {
-  
+  const selectedNote = req.params.id;
+  console.log(selectedNote);
+  // const chosen = JSON.parse(req.params.id); 
+  //logs chosen number
+  // console.log(chosen);
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
-    const chosen = req.params.id;
-    const dbJson = JSON.parse(chosen);
-    console.log(dbJson);
-  
-    
-    fs.writeFile(outputPath, JSON.stringify(dbJson, null, 2, +","), (err)=> {
+    let pData = JSON.parse(data);
+      pData = pData.filter(function(pnotes){
+        return pnotes.id != req.params.id;
+      })
+
+    fs.writeFile(outputPath, JSON.stringify(pData, null, 2, +","), (err)=> {
       if (err) throw err;
-      for (let i = 0; i < dbJson.length; i++) {
-      if (chosen === dbJson.id[i]) {
-       return res.json(dbJson);
-        }
-      }
-    })
+      res.json(selectedNote);
+  });
+      
   });
 });
 
