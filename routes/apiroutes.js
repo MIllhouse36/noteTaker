@@ -5,12 +5,10 @@ const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 
-console.log({outputPath, OUTPUT_DIR});
-// Api Routes =============================================================
-
 router.get("/api/notes", function (req, res) {
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
+    // console.log(data);
     const dbJson = JSON.parse(data);
     // console.log(dbJson);
     return res.json(dbJson);
@@ -18,17 +16,17 @@ router.get("/api/notes", function (req, res) {
 });
 
 router.post("/api/notes", function (req, res) {
+    // console.log(req.body);
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
     const dbJson = JSON.parse(data);
-    console.log(dbJson);
-    console.log(dbJson === []);
+    // console.log(dbJson);
     let newID;
     if (dbJson.length > 0) {
       newID = dbJson[dbJson.length - 1].id + 1;
-      console.log(newID)
+      // console.log(newID)
     }else{
-      newID = 0;
+      newID = 1;
     }
     let newNote = req.body;
     newNote.id = newID;
@@ -44,16 +42,12 @@ router.post("/api/notes", function (req, res) {
 router.delete("/api/notes/:id", function(req, res) {
   const selectedNote = req.params.id;
   console.log(selectedNote);
-  // const chosen = JSON.parse(req.params.id); 
-  //logs chosen number
-  // console.log(chosen);
   fs.readFile(outputPath, "utf8", (err, data) => {
     if (err) throw err;
     let pData = JSON.parse(data);
       pData = pData.filter(function(pnotes){
         return pnotes.id != req.params.id;
       })
-
     fs.writeFile(outputPath, JSON.stringify(pData, null, 2, +","), (err)=> {
       if (err) throw err;
       res.json(selectedNote);
