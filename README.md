@@ -1,5 +1,5 @@
 
-# noteTakeCLI 
+# note-taker 
 ## Table of Contents 
 [Descriptions](#Descriptions)
 
