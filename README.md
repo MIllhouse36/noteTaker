@@ -25,7 +25,7 @@ Development of this projects has been halted with plans to covert this project i
 
 
 ## Host
-https://millhouse36.github.io/hourlyScheduler/
+https://notetaker-kmillhouse.herokuapp.com/
 
 ## Author and Contact
 If you have and questions contact me @
