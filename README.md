@@ -37,7 +37,6 @@ express, bootstrap
 ## Project status
 Development of this projects has been halted with plans to covert this project into a full stack react application with user authentication.
 
-
 ## Host
 https://notetaker-kmillhouse.herokuapp.com/
 
