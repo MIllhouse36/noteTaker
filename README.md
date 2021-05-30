@@ -20,6 +20,19 @@ To contribute to Note-taker, follow these steps:
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
+## Installations
+Make sure you download and install:
+ * [Node.js](https://nodejs.org/en/download/)
+
+and from the command line all you will need to do is type 
+```
+npm install
+```
+and your off to the races with your development environment for this project.
+
+## Dependencies
+express, bootstrap
+
 ## Project status
 Development of this projects has been halted with plans to covert this project into a full stack react application with user authentication.
 
