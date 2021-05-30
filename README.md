@@ -4,10 +4,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Description
- 
-## Usage
-[the site]().
+## Description 
+ This notetaker is the perfect tool to stay organized. This app allows you to create, read, update, and delete personal notes.  
+
+## Usage 
+ To use this notetake first navigate to [the site](https://notetaker-kmillhouse.herokuapp.com/) then click get started. Once on the note page type in a title for your note and then note text and then hit the save icon to  save your note. Your note will be display on the left and if you click the trashcan icon you can delete your note. When you navigate away from the page your note will be save to a database for you to access at your leisure. 
 
 ## Contributing to Note-taker  
 To contribute to Note-taker, follow these steps:
